@@ -78,7 +78,7 @@ def load_and_analyze_data(file):
 st.title("Analyse des données du sondage")
 
 # Permettre à l'utilisateur de télécharger un fichier CSV
-uploaded_file = st.sidebar.file_uploader("Téléchargez un fichier CSV", type=["csv"])
+uploaded_file = st.sidebar.file_uploader("Cliquer ici Pour charger le fichier à analyser : ", type=["csv"])
 
 if uploaded_file:
     # Analyser les données une fois le fichier téléchargé
