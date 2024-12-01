@@ -42,20 +42,19 @@ def load_and_analyze_data(file):
     df.drop(["Timestamp"], axis = 1, inplace = True)
     
     # Nombre Total de réponses
-    st.sidebar.subheader("2 - Nombre total de réponses au Questionaire")
-    st.sidebar.write(df.shape[0])
+    st.sidebar.subheader(f"2 -   Nombre total de réponses au Questionaire:   {df.shape[0]}")
     
     # Sélectionner une colonne pour analyse
     columns = df.columns.tolist()
-    st.sidebar.subheader("3 - Sélectionnez une colonne pour analyser :")
+    st.sidebar.subheader("3 -   Sélectionnez une colonne pour analyser :")
     column = st.sidebar.selectbox("", columns)
     
     # Afficher un aperçu des données
-    st.sidebar.subheader("4 - Aperçu des données")
+    st.sidebar.subheader("4 -   Aperçu des données")
     st.sidebar.write(df.head())
 
     if column:
-        st.sidebar.subheader(f"Analyse de la colonne : {column}")
+        st.subheader(f"I -   **Analyse de la colonne : {column}**")
 
         # Afficher les valeurs uniques et leur fréquence
         # Calcul des valeurs uniques et des fréquences
@@ -68,27 +67,28 @@ def load_and_analyze_data(file):
                               })
 
         # Afficher le tableau avec les fréquences et les pourcentages
-        st.subheader("**Valeurs uniques, leur fréquence et pourcentage associé :**")
+        st.subheader("II -   **Valeurs uniques, leur fréquence et pourcentage associé :**")
         st.write(result)
 
         # Si la colonne est numérique, afficher des statistiques descriptives
         if pd.api.types.is_numeric_dtype(df[column]):
-            st.subheader("**Statistiques descriptives :**")
+            st.subheader("III -   **Statistiques descriptives :**")
             st.write(df[column].describe())
         else:
+            pass
             # Longueur moyenne des réponses textuelles si la colonne est textuelle
-            avg_length = df[column].astype(str).apply(len).mean()
-            st.subheader(f"**Longueur moyenne des réponses textuelles :** {avg_length:.2f} caractères")
+            #avg_length = df[column].astype(str).apply(len).mean()
+            #st.subheader(f"III -   **Longueur moyenne des réponses textuelles :** {avg_length:.2f} caractères")
 
         # Visualisation de la distribution des valeurs
-        st.subheader("Visualisation des valeurs")
+        st.subheader("III -  Visualisation des valeurs")
         st.bar_chart(unique_values)
 
 # Interface utilisateur
 st.title("Analyse des données du sondage 'Enquête légumes d'Afrique'")
 
 # Permettre à l'utilisateur de télécharger un fichier CSV
-st.sidebar.title("1 - Cliquer ici Pour charger le fichier à analyser : ")
+st.sidebar.title("1 -   Cliquer ici Pour charger le fichier à analyser : ")
 uploaded_file = st.sidebar.file_uploader("", type=["csv"])
 
 if uploaded_file:
