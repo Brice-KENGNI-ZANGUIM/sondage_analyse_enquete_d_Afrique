@@ -94,40 +94,38 @@ columns = df.columns.tolist()
 st.sidebar.subheader("3 -   Sélectionnez une colonne pour analyser :")
 column = st.sidebar.selectbox("", columns, key="unique_key_column")
 
-if column :
-    
-    # Afficher un aperçu des données
-    st.sidebar.subheader("4 -   Aperçu des données")
-    st.sidebar.dataframe(df.head())
+# Afficher un aperçu des données
+st.sidebar.subheader("4 -   Aperçu des données")
+st.sidebar.dataframe(df.head())
 
-    if column:
-        st.subheader(f"I -   **Analyse de la colonne : {column}**")
+if column:
+    st.subheader(f"I -   **Analyse de la colonne : {column}**")
 
-        # Afficher les valeurs uniques et leur fréquence
-        # Calcul des valeurs uniques et des fréquences
-        unique_values = df[column].value_counts()
-        percentages = df[column].value_counts(normalize=True) * 100  # Normaliser pour obtenir les pourcentages
+    # Afficher les valeurs uniques et leur fréquence
+    # Calcul des valeurs uniques et des fréquences
+    unique_values = df[column].value_counts()
+    percentages = df[column].value_counts(normalize=True) * 100  # Normaliser pour obtenir les pourcentages
 
-        # Créer un DataFrame avec les fréquences et les pourcentages
-        result = pd.DataFrame({ 'Fréquence': unique_values,
-                                'Pourcentage (%)': percentages
-                              })
+    # Créer un DataFrame avec les fréquences et les pourcentages
+    result = pd.DataFrame({ 'Fréquence': unique_values,
+                            'Pourcentage (%)': percentages
+                          })
 
-        # Afficher le tableau avec les fréquences et les pourcentages
-        st.subheader("II -   **Valeurs uniques, leur fréquence et pourcentage associé :**")
-        st.dataframe(result)
+    # Afficher le tableau avec les fréquences et les pourcentages
+    st.subheader("II -   **Valeurs uniques, leur fréquence et pourcentage associé :**")
+    st.dataframe(result)
 
-        # Si la colonne est numérique, afficher des statistiques descriptives
-        if pd.api.types.is_numeric_dtype(df[column]):
-            st.subheader("III -   **Statistiques descriptives :**")
-            st.write(df[column].describe())
-        else:
-            pass
-            # Longueur moyenne des réponses textuelles si la colonne est textuelle
-            #avg_length = df[column].astype(str).apply(len).mean()
-            #st.subheader(f"III -   **Longueur moyenne des réponses textuelles :** {avg_length:.2f} caractères")
+    # Si la colonne est numérique, afficher des statistiques descriptives
+    if pd.api.types.is_numeric_dtype(df[column]):
+        st.subheader("III -   **Statistiques descriptives :**")
+        st.write(df[column].describe())
+    else:
+        pass
+        # Longueur moyenne des réponses textuelles si la colonne est textuelle
+        #avg_length = df[column].astype(str).apply(len).mean()
+        #st.subheader(f"III -   **Longueur moyenne des réponses textuelles :** {avg_length:.2f} caractères")
 
-        # Visualisation de la distribution des valeurs
-        st.subheader("III -  Visualisation des valeurs")
-        st.bar_chart(unique_values )
+    # Visualisation de la distribution des valeurs
+    st.subheader("III -  Visualisation des valeurs")
+    st.bar_chart(unique_values )
 
