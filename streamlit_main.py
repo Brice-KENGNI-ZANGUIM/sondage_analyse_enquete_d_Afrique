@@ -76,25 +76,27 @@ sheet_name = "Enquete_legumes_d_Afrique" # replace with your own sheet name
 sheet_id = '1tjN9K9KeY5Eb6G3J-IFJ5HUmZQuGjZh9ZvT-hZUMpF8' # replace with your sheet's ID
 url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
 
-# Charger le fichier CSV
-df = pd.read_csv(url)
-    
-# Suppression du TimeStamp
-df.drop(["Timestamp"], axis = 1, inplace = True)
-    
-# Nombre Total de réponses
-st.sidebar.subheader(f"2 -   Nombre total de réponses au Questionaire:   {df.shape[0]}")
-    
-# Sélectionner une colonne pour analyse
-columns = df.columns.tolist()
-st.sidebar.subheader("3 -   Sélectionnez une colonne pour analyser :")
-column = st.sidebar.selectbox("", columns, key="unique_key_column")
-
-# Afficher un aperçu des données
-st.sidebar.subheader("4 -   Aperçu des données")
-st.sidebar.dataframe(df.head())
+column = True : 
 
 if column:
+    # Charger le fichier CSV
+    df = pd.read_csv(url)
+    
+    # Suppression du TimeStamp
+    df.drop(["Timestamp"], axis = 1, inplace = True)
+    
+    # Nombre Total de réponses
+    st.sidebar.subheader(f"2 -   Nombre total de réponses au Questionaire:   {df.shape[0]}")
+    
+    # Sélectionner une colonne pour analyse
+    columns = df.columns.tolist()
+    st.sidebar.subheader("3 -   Sélectionnez une colonne pour analyser :")
+    column = st.sidebar.selectbox("", columns, key="unique_key_column")
+
+    # Afficher un aperçu des données
+    st.sidebar.subheader("4 -   Aperçu des données")
+    st.sidebar.dataframe(df.head())
+
     st.subheader(f"I -   **Analyse de la colonne : {column}**")
 
     # Afficher les valeurs uniques et leur fréquence
