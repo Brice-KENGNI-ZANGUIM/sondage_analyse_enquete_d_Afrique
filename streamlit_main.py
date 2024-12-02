@@ -11,9 +11,6 @@ def load_and_analyze_data( ):
     sheet_name = "Enquete_legumes_d_Afrique" # replace with your own sheet name
     sheet_id = '1tjN9K9KeY5Eb6G3J-IFJ5HUmZQuGjZh9ZvT-hZUMpF8' # replace with your sheet's ID
     url = f"https://docs.google.com/spreadsheets/d/{sheet_id}/gviz/tq?tqx=out:csv&sheet={sheet_name}"
-    
-    # Permettre à l'utilisateur de télécharger un fichier CSV
-    st.sidebar.title(f"URL : {url}")
 
     # Charger le fichier CSV
     df = pd.read_csv(url)
