@@ -2,37 +2,6 @@ import streamlit as st
 import pandas as pd
 
 
-def barre_latérale() :
-    #st.sidebar.markdown("---")
-    # Selection du modèle
-    st.sidebar.title("A - Sélection d'un modèle")
-    model_selection = st.sidebar.radio("Modèles disponibles", ("Chat", "Doc", "Expert"))
-
-    # Paramétrage
-    st.sidebar.title("B - Paramétrage du modèle")
-
-    st.sidebar.header( "Mémoire")
-    memory = st.sidebar.checkbox("sauvegarde" , True, key = "memory")
-
-    # Checkbox
-    st.sidebar.header("Paramètre 1")
-    params1 = st.sidebar.columns(3)
-    i= 1
-    params1_values = []
-    for param in params1 :
-        with param :
-            params1_values.append( st.checkbox(f"choix{i}") )
-            i += 1
-            
-    st.sidebar.header("Paramètre 2")
-    params2 = st.sidebar.slider('selection', 0, 200, 10)
-            
-    st.sidebar.header("Paramètre 3")
-    params3 = st.sidebar.slider("selection d'interval" , -100 , 100 , (-6,10))
-
-    return model_selection
-
-
 # Fonction pour charger et analyser les données
 def load_and_analyze_data(file):
     # Charger le fichier CSV
