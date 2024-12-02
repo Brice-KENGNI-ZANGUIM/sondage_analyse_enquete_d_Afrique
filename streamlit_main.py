@@ -92,7 +92,7 @@ st.sidebar.subheader(f"2 -   Nombre total de réponses au Questionaire:   {df.sh
 # Sélectionner une colonne pour analyse
 columns = df.columns.tolist()
 st.sidebar.subheader("3 -   Sélectionnez une colonne pour analyser :")
-column = st.sidebar.selectbox("", columns)
+column = st.sidebar.selectbox("", columns, key="unique_key_column")
 
 if column :
     
