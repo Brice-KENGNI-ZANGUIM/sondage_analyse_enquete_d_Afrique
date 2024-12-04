@@ -123,5 +123,5 @@ if column:
 
     # Visualisation de la distribution des valeurs
     st.subheader("III -  Visualisation des valeurs")
-    st.bar_chart(unique_values )
+    st.bar_chart(unique_values, horizontal=True )
 
